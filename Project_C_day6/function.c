@@ -241,21 +241,31 @@ void teacherMenu() {
 
 //luu danh sach hoc sinh vao file student.txt 
 void saveTeachers(Teacher teachers[], int count) {
-    FILE *file = fopen(FILE_TEACHER, "wb"); 
-    if (file) {
-        fwrite(&count, sizeof(int), 1, file);
-        fwrite(teachers, sizeof(Teacher), count, file);
-        fclose(file);
+    FILE *file = fopen(FILE_STUDENT, "wb"); 
+    if (file == NULL) {
+        printf("Loi: Khong the mo file de ghi\n");
+        return;
     }
+    
+    fwrite(&count, sizeof(int), 1, file);
+    fwrite(teachers, sizeof(Teacher), count, file);
+    
+    fclose(file);
+    printf("Du lieu da duoc luu vao file\n");
 }
-//doc danh sach hoc sinh trong file student.txt
+//doc danh sach giao vien trong file student.txt
 void loadTeachers(Teacher teachers[], int *count) {
-    FILE *file = fopen(FILE_TEACHER, "rb");
-    if (file) {
-        fread(count, sizeof(int), 1, file);
-        fread(teachers, sizeof(Teacher), *count, file);
-        fclose(file);
+    FILE *file = fopen(FILE_STUDENT, "rb");
+    if (file == NULL) {
+        printf("Loi: Khong the mo file hoac file trong\n");
+        return;
     }
+    
+    fread(count, sizeof(int), 1, file);//doc so luong giao vien 
+    fread(teachers, sizeof(Teacher), *count, file);
+    
+    fclose(file);
+    printf("Du lieu da duoc tai tu file\n");
 }
 
 //nhap thong tin giao vien

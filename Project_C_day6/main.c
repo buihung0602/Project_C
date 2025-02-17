@@ -8,9 +8,11 @@ int main() {
     Student students[MAX];
     int studentCount = 0, choice, subChoice;
     loadStudents(students, &studentCount);
+    void saveStudents(Student students[], int count);
     Teacher teachers[MAX];
     int teacherCount = 0;
     loadTeachers(teachers, &teacherCount);
+    void saveTeachers(Teacher teachers[], int count);
     do {
         mainMenu();
         scanf("%d", &choice);
